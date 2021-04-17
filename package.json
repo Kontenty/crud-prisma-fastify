@@ -1,0 +1,22 @@
+{
+  "name": "fastify-prisma",
+  "version": "1.0.0",
+  "description": "node backend app with prisma orm and fastify",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/server.js"
+  },
+  "keywords": [],
+  "author": "Konrad Gorski",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^7.24.0",
+    "nodemon": "^2.0.7",
+    "pino-pretty": "^4.7.1",
+    "prisma": "^2.21.2"
+  },
+  "dependencies": {
+    "@prisma/client": "^2.21.2",
+    "fastify": "^3.14.2"
+  }
+}
