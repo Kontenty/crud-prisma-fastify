@@ -30,23 +30,24 @@ const findCar = async (req, reply) => {
   }
 };
 
-const addCar = async () => {
+const addCar = async (req, reply) => {
+  const { body } = req;
+  const { service } = body;
+  const dbQuery = { ...body };
+  if (service) {
+    delete dbQuery.service;
+    dbQuery.services = {
+      connectOrCreate: {
+        create: { name: service },
+        where: { name: service },
+      },
+    };
+  }
   try {
     const newCar = await prisma.car.create({
-      data: {
-        title: "Yaris",
-        brand: "Toyota",
-        price: "49 000",
-        age: 0,
-        services: {
-          connectOrCreate: {
-            create: { name: "ASO" },
-            where: { name: "ASO" },
-          },
-        },
-      },
+      data: dbQuery,
     });
-    return newCar;
+    reply.send({ car: newCar });
   } catch (err) {
     throw new Error(err);
   }

@@ -11,6 +11,11 @@ const routes = [
     url: "/car",
     handler: ctrl.findCar,
   },
+  {
+    method: "POST",
+    url: "/car",
+    handler: ctrl.addCar,
+  },
 ];
 
 module.exports = routes;
