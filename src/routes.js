@@ -19,6 +19,17 @@ const routes = [
     schema: schema.addCar,
     handler: ctrl.addCar,
   },
+  {
+    method: "POST",
+    url: "/owner",
+    schema: schema.addOwner,
+    handler: ctrl.addOwner,
+  },
+  {
+    method: "GET",
+    url: "/owners",
+    handler: ctrl.getOwners,
+  },
 ];
 
 module.exports = routes;

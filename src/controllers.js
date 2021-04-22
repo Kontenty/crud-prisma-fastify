@@ -2,17 +2,16 @@ const { PrismaClient } = require("@prisma/client");
 
 const prisma = new PrismaClient();
 
-const getCars = async (req, reply) => {
+const getCars = async () => {
   try {
     const cars = await prisma.car.findMany({
       include: {
         services: true,
       },
     });
-    reply.send({ cars });
+    return { cars };
   } catch (err) {
-    throw new Error(err.toString());
-    // throw new Error(err);
+    return err
   }
 };
 
@@ -55,4 +54,24 @@ const addCar = async (req) => {
   }
 };
 
-module.exports = { getCars, findCar, addCar };
+const addOwner = async (req) => {
+  const { body } = req;
+  try {
+    const owner = await prisma.owner.create({
+      data: body,
+    });
+    return owner;
+  } catch (err) {
+    return err;
+  }
+};
+const getOwners = async () => {
+  try {
+    const owners = await prisma.owner.findMany();
+    return owners;
+  } catch (err) {
+    return err;
+  }
+};
+
+module.exports = { getCars, findCar, addCar, addOwner, getOwners };

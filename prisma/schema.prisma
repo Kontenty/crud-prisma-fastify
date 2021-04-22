@@ -24,7 +24,7 @@ model Car {
   model          String    @db.VarChar(255)
   brand          String    @db.VarChar(255)
   price          Float
-  productionYear String    @db.VarChar(4)
+  productionYear Int
   services       Service[]
 }
 

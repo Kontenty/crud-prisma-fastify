@@ -2,10 +2,20 @@ const addCar = {
   body: {
     type: "object",
     properties: {
-      title: { type: "string" },
+      model: { type: "string" },
       brand: { type: "string" },
       price: { type: "string" },
-      age: { type: "string" },
+      productionYear: { type: "number" },
+    },
+  },
+};
+
+const addOwner = {
+  body: {
+    type: "object",
+    properties: {
+      firstName: { type: "string" },
+      lastName: { type: "string" },
     },
   },
 };
@@ -20,4 +30,4 @@ const findCar = {
   },
 };
 
-module.exports = { addCar, findCar };
+module.exports = { addCar, findCar, addOwner };
