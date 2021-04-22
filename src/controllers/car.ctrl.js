@@ -1,6 +1,4 @@
-const { PrismaClient } = require("@prisma/client");
-
-const prisma = new PrismaClient();
+const prisma = require("./prisma")
 
 const getCars = async () => {
   try {
@@ -54,24 +52,4 @@ const addCar = async (req) => {
   }
 };
 
-const addOwner = async (req) => {
-  const { body } = req;
-  try {
-    const owner = await prisma.owner.create({
-      data: body,
-    });
-    return owner;
-  } catch (err) {
-    return err;
-  }
-};
-const getOwners = async () => {
-  try {
-    const owners = await prisma.owner.findMany();
-    return owners;
-  } catch (err) {
-    return err;
-  }
-};
-
-module.exports = { getCars, findCar, addCar, addOwner, getOwners };
+module.exports = { getCars, findCar, addCar };
