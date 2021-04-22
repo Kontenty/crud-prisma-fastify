@@ -10,18 +10,28 @@ generator client {
   provider = "prisma-client-js"
 }
 
+model Owner {
+  id        Int    @id @default(autoincrement())
+  firstName String @db.VarChar(255)
+  lastName  String @db.VarChar(255)
+  cars      Car[]
+}
+
 model Car {
-  id       Int       @id @default(autoincrement())
-  title    String    @db.VarChar(255)
-  brand    String    @db.VarChar(255)
-  price    String    @db.VarChar(255)
-  age      Float
-  services Service[]
+  id             Int       @id @default(autoincrement())
+  owner          Owner     @relation(fields: [ownerId], references: [id])
+  ownerId        Int
+  model          String    @db.VarChar(255)
+  brand          String    @db.VarChar(255)
+  price          Float
+  productionYear String    @db.VarChar(4)
+  services       Service[]
 }
 
 model Service {
-  id    Int    @id @default(autoincrement())
+  id    Int      @id @default(autoincrement())
+  car   Car      @relation(fields: [carId], references: [id])
+  carId Int
   name  String
-  cars Car[]
-  @@unique([name])
+  date  DateTime @default(now())
 }

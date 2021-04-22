@@ -32,7 +32,7 @@ const findCar = async (req) => {
   }
 };
 
-const addCar = async (req, reply) => {
+const addCar = async (req) => {
   const { body } = req;
   const { service } = body;
   const dbQuery = { ...body };
@@ -49,9 +49,9 @@ const addCar = async (req, reply) => {
     const newCar = await prisma.car.create({
       data: dbQuery,
     });
-    reply.send({ car: newCar });
+    return newCar;
   } catch (err) {
-    throw new Error(err);
+    return err;
   }
 };
 
