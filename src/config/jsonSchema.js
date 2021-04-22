@@ -4,9 +4,9 @@ const addCar = {
     properties: {
       model: { type: "string" },
       brand: { type: "string" },
-      price: { type: "number" },
-      productionYear: { type: "number" },
-      ownerId: { type: "number" },
+      price: { type: "number", minimum: 0 },
+      productionYear: { type: "integer", minimum: 1886 },
+      ownerId: { type: "integer" },
     },
     required: ['brand','model','ownerId']
   },
@@ -18,7 +18,7 @@ const addOwner = {
     properties: {
       firstName: { type: "string" },
       lastName: { type: "string" },
-      ownerId: { type: "number" },
+      ownerId: { type: "integer" },
     },
   },
 };
@@ -27,7 +27,7 @@ const findCar = {
   params: {
     type: "object",
     properties: {
-      id: { type: "number" },
+      id: { type: "integer" },
     },
     required: ["id"],
   },
