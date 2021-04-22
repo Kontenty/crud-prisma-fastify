@@ -5,6 +5,7 @@ const getCars = async () => {
     const cars = await prisma.car.findMany({
       include: {
         services: true,
+        owner: true
       },
     });
     return { cars };
@@ -31,10 +32,10 @@ const findCar = async (req) => {
 
 const addCar = async (req) => {
   const { body } = req;
-  const { service } = body;
   const dbQuery = { ...body };
+  const { model, brand, price, productionYear, service } = body
+
   if (service) {
-    delete dbQuery.service;
     dbQuery.services = {
       connectOrCreate: {
         create: { name: service },
@@ -44,7 +45,9 @@ const addCar = async (req) => {
   }
   try {
     const newCar = await prisma.car.create({
-      data: dbQuery,
+      data: {model, brand, price, productionYear,
+        owner: {connect: {id: body.ownerId}}
+      },
     });
     return newCar;
   } catch (err) {
