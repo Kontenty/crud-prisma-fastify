@@ -4,12 +4,14 @@
   "description": "node backend app with prisma orm and fastify",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon src/server.js"
+    "dev": "nodemon src/server.js",
+    "start": "cross-env NODE_ENV=production node src/server.js"
   },
   "keywords": [],
   "author": "Konrad Gorski",
   "license": "ISC",
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "eslint": "^7.24.0",
     "fastify-cors": "^5.2.0",
     "fastify-swagger": "^4.6.0",
