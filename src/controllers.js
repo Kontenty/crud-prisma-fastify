@@ -16,17 +16,19 @@ const getCars = async (req, reply) => {
   }
 };
 
-const findCar = async (req, reply) => {
-  const id = Number(req.query.id);
+const findCar = async (req) => {
+  const id = parseInt(req.params?.id);
   if (id) {
     try {
       const car = await prisma.car.findFirst({
         where: { id },
       });
-      reply.send({ car });
+      return car ?? `No car found with id ${id}`;
     } catch (err) {
-      throw new Error(err.toString());
+      return err;
     }
+  } else {
+    return "Id number has to be provided";
   }
 };
 

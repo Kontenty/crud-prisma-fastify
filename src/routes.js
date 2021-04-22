@@ -1,4 +1,5 @@
 const ctrl = require("./controllers");
+const schema = require("./config/jsonSchema");
 
 const routes = [
   {
@@ -8,12 +9,14 @@ const routes = [
   },
   {
     method: "GET",
-    url: "/car",
+    url: "/car/:id",
+    schema: schema.findCar,
     handler: ctrl.findCar,
   },
   {
     method: "POST",
     url: "/car",
+    schema: schema.addCar,
     handler: ctrl.addCar,
   },
 ];
