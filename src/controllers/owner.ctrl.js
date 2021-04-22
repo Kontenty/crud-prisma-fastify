@@ -14,7 +14,7 @@ const addOwner = async (req) => {
 
 const getOwners = async () => {
   try {
-    const owners = await prisma.owner.findMany();
+    const owners = await prisma.owner.findMany({include: {cars: true}});
     return owners;
   } catch (err) {
     return err;
