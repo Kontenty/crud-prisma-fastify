@@ -22,6 +22,16 @@ const addOwner = {
     },
   },
 };
+const addService = {
+  body: {
+    type: "object",
+    properties: {
+      name: { type: "string" },
+      date: { type: "string", format: "date" },
+      carId: { type: "integer" },
+    },
+  },
+};
 
 const findCar = {
   params: {
@@ -33,4 +43,4 @@ const findCar = {
   },
 };
 
-module.exports = { addCar, findCar, addOwner };
+module.exports = { addCar, findCar, addOwner, addService };

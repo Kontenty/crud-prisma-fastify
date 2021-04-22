@@ -21,6 +21,12 @@ const routes = [
   },
   {
     method: "POST",
+    url: "/service",
+    schema: schema.addService,
+    handler: ctrl.addService,
+  },
+  {
+    method: "POST",
     url: "/owner",
     schema: schema.addOwner,
     handler: ctrl.addOwner,

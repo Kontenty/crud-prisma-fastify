@@ -11,6 +11,7 @@ const addOwner = async (req) => {
     return err;
   }
 };
+
 const getOwners = async () => {
   try {
     const owners = await prisma.owner.findMany();
